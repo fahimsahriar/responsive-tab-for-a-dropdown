@@ -320,38 +320,30 @@
                 display: none;
             }
 
-            /* Tab content when inside tab nav */
-            .orbitax-tab-nav .orbitax-tab-content {
+            /* Header styling when in mobile tab nav */
+            .orbitax-tab-nav .orbitax-header {
                 display: none;
-                padding: 20px;
-                background-color: #f5f5f5;
-                margin: 0;
-                width: calc(100% + 40px);
-                margin-left: -20px;
-                border-bottom: 1px solid #e5e5e5;
-            }
-
-            .orbitax-tab-nav .orbitax-tab-content.orbitax-active {
-                display: block;
-            }
-
-            /* Show header only in first tab (research) */
-            .orbitax-tab-nav #orbitax-research.orbitax-active .orbitax-header {
-                display: flex !important;
                 flex-direction: column;
                 gap: 16px;
-                padding-bottom: 24px;
-                margin-bottom: 24px;
+                padding: 20px;
+                margin: 0;
+                width: 100%;
+                background-color: #f5f5f5;
                 border-bottom: 1px solid #e5e5e5;
+                border-radius: 0;
             }
 
-            .orbitax-tab-nav #orbitax-compliance.orbitax-active .orbitax-header,
-            .orbitax-tab-nav #orbitax-productivity.orbitax-active .orbitax-header {
-                display: none !important;
+            .orbitax-tab-nav .orbitax-header.orbitax-mobile-active {
+                display: flex;
             }
 
-            .orbitax-header-content h1 {
-                font-size: 20px;
+            .orbitax-header-content {
+                width: 100%;
+            }
+
+            .orbitax-header-content h3 {
+                font-size: 16px;
+                line-height: 1.4;
             }
 
             .orbitax-header-content p {
@@ -360,13 +352,27 @@
 
             .orbitax-learn-more-btn {
                 align-self: flex-start;
-                font-size: 13px;
-                padding: 8px 20px;
+                font-size: 13px !important;
+                padding: 8px 20px !important;
             }
 
-            .orbitax-tab-content.orbitax-active {
+            /* Tab content when inside tab nav */
+            .orbitax-tab-nav .orbitax-tab-content {
+                display: none;
+                padding: 20px;
+                background-color: #f5f5f5;
+                margin: 0;
                 width: 100%;
-                margin-left: 0px;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .orbitax-tab-nav .orbitax-tab-content.orbitax-active {
+                display: block;
+            }
+
+            /* Hide horizontal line in mobile */
+            .orbitax-horizontal-line {
+                display: none;
             }
 
             /* Grid becomes single column list on mobile */
@@ -439,23 +445,18 @@
             .orbitax-tab-nav li:hover {
                 background-color: #F4F6F9;
                 color: #175cff;
-                /* border-left-color: #1a73e8; */
             }
 
             /* Remove click activation on desktop, use hover */
             .orbitax-tab-nav li.orbitax-active {
                 background-color: #F4F6F9;
             }
-
-            .orbitax-tab-nav li:hover~li {
-                /* Keep other tabs normal when hovering */
-            }
         }
     </style>
     <div class="orbitax-reset orbitax-body">
         <div class="orbitax-container">
             <!-- Left Sidebar - Tab Navigation -->
-            <aside class="orbitax-sidebar">
+            <aside class="orbitax-sidebar" id="orbitax-sidebar">
                 <ul class="orbitax-tab-nav">
                     <li data-tab="orbitax-research">
                         <div class="orbitax-tab-header">
@@ -484,7 +485,7 @@
             <!-- Main Content Area -->
             <main class="orbitax-main-content">
                 <!-- Header -->
-                <div class="orbitax-header">
+                <div class="orbitax-header" id="orbitax-main-header">
                     <div class="orbitax-header-content">
                         <h3>Orbitax International Tax Platform — Technical Facts</h3>
                         <p>Empower your team with the content-driven International Tax Platform</p>
@@ -497,8 +498,7 @@
                 <hr class="orbitax-horizontal-line">
 
                 <!-- Tab Content: Research & Planning -->
-                <div class="orbitax-tab-content orbitax-active" id="orbitax-research"
-                    data-tab-content="orbitax-research">
+                <div class="orbitax-tab-content orbitax-active" id="orbitax-research" data-tab-content="orbitax-research">
                     <div class="orbitax-features-grid">
                         <div class="orbitax-feature-card">
                             <div class="orbitax-feature-header">
@@ -617,10 +617,31 @@
         const orbitaxTabContents = document.querySelectorAll('.orbitax-tab-content');
         const orbitaxMainContent = document.querySelector('.orbitax-main-content');
         const orbitaxTabNav = document.querySelector('.orbitax-tab-nav');
+        const orbitaxMainHeader = document.getElementById('orbitax-main-header');
+        const sideBar = document.getElementById('orbitax-sidebar');
 
         // Function to check if mobile view
         function orbitaxIsMobile() {
             return window.innerWidth <= 768;
+        }
+
+        // Function to create a clone of the header for mobile
+        function orbitaxCreateMobileHeader() {
+            const mobileHeader = orbitaxMainHeader.cloneNode(true);
+            mobileHeader.id = 'orbitax-mobile-header';
+            mobileHeader.classList.add('orbitax-mobile-active');
+            return mobileHeader;
+        }
+
+        // Ensure mobile header exists in the sidebar (idempotent)
+        function orbitaxEnsureMobileHeader() {
+            let existing = document.getElementById('orbitax-mobile-header');
+            if (!existing) {
+                const mobileHeader = orbitaxCreateMobileHeader();
+                sideBar.appendChild(mobileHeader);
+                existing = document.getElementById('orbitax-mobile-header');
+            }
+            return existing;
         }
 
         // Desktop: Hover to show content
@@ -667,7 +688,10 @@
                         if (toggleIcon) toggleIcon.textContent = '−';
                         tabContent.classList.add('orbitax-active');
 
-                        // Move content directly after this li element
+                        // Ensure mobile header exists (placement independent of clicks)
+                        orbitaxEnsureMobileHeader();
+
+                        // Insert content into the tab list as before (after the tab item)
                         item.parentNode.insertBefore(tabContent, item.nextSibling);
                     }
                 } else {
@@ -692,6 +716,9 @@
 
                 if (currentWidth > 768) {
                     // Moving to desktop - return content to main area
+                    // Remove mobile headers
+                    document.querySelectorAll('#orbitax-mobile-header').forEach(header => header.remove());
+
                     orbitaxTabContents.forEach(content => {
                         if (content.parentNode !== orbitaxMainContent) {
                             orbitaxMainContent.appendChild(content);
@@ -707,13 +734,25 @@
                     // Show first content
                     orbitaxTabContents[0].classList.add('orbitax-active');
                 } else {
-                    // Moving to mobile - position active content
+                    // Moving to mobile - ensure header exists and keep tabs inactive by default
+                    orbitaxEnsureMobileHeader();
+                    // Reset icons and active state for all tabs
+                    orbitaxTabNavItems.forEach(nav => {
+                        const icon = nav.querySelector('.orbitax-toggle-icon');
+                        if (icon) icon.textContent = '+';
+                        nav.classList.remove('orbitax-active');
+                    });
+
+                    // If there is an already-active tab, show its content; otherwise leave all inactive
                     const activeTab = document.querySelector('.orbitax-tab-nav li.orbitax-active');
                     if (activeTab) {
                         const activeTabId = activeTab.getAttribute('data-tab');
                         const activeContent = document.getElementById(activeTabId);
                         if (activeContent) {
+                            const icon = activeTab.querySelector('.orbitax-toggle-icon');
+                            if (icon) icon.textContent = '−';
                             activeTab.parentNode.insertBefore(activeContent, activeTab.nextSibling);
+                            activeContent.classList.add('orbitax-active');
                         }
                     }
                 }
@@ -727,10 +766,16 @@
         const orbitaxFirstContent = document.getElementById(orbitaxFirstTabId);
 
         if (orbitaxIsMobile()) {
-            if (orbitaxFirstContent) {
-                // Insert content directly after first tab
-                orbitaxFirstTab.parentNode.insertBefore(orbitaxFirstContent, orbitaxFirstTab.nextSibling);
-            }
+            // Ensure header exists in the sidebar regardless of tab state
+            orbitaxEnsureMobileHeader();
+            // Keep all tabs inactive initially and set toggle icons to '+'
+            orbitaxTabNavItems.forEach(nav => {
+                const icon = nav.querySelector('.orbitax-toggle-icon');
+                if (icon) icon.textContent = '+';
+                nav.classList.remove('orbitax-active');
+            });
+            // Ensure no tab content is marked active on initial mobile load
+            orbitaxTabContents.forEach(content => content.classList.remove('orbitax-active'));
         } else {
             // Desktop: set first tab as active
             orbitaxFirstTab.classList.add('orbitax-active');
