@@ -10,44 +10,39 @@
 
 <body>
     <style>
-        * {
+        .orbitax-reset * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            color: #333;
-        }
-
-        .container {
+        .orbitax-container {
             display: flex;
             max-width: 1400px;
             margin: auto;
             align-items: flex-start;
-            border: 1px solid blue;
+            /*border: 1px solid blue;*/
         }
 
         /* Left Sidebar - Tab Navigation */
-        .sidebar {
+        .orbitax-sidebar {
             box-sizing: content-box;
             padding: 24px 30px;
             width: 320px;
         }
 
-        .tab-nav {
+        .orbitax-tab-nav {
             list-style: none;
         }
 
-        .tab-nav li {
-            padding: 16px 24px;
+        .orbitax-tab-nav li {
+            padding: 14px 16px;
             cursor: pointer;
             display: flex;
             align-items: center;
             gap: 12px;
-            color: #666;
-            font-size: 15px;
+            color: #1a1a1a;
+            font-size: 18px;
             font-weight: 500;
             transition: all 0.2s ease;
             border-left: 3px solid transparent;
@@ -56,18 +51,18 @@
             border-radius: 8px;
         }
 
-        .tab-header {
+        .orbitax-tab-header {
             display: flex;
             align-items: center;
             gap: 12px;
             width: 100%;
         }
 
-        .tab-title {
+        .orbitax-tab-title {
             flex: 1;
         }
 
-        .toggle-icon {
+        .orbitax-toggle-icon {
             display: none;
             font-size: 24px;
             font-weight: 300;
@@ -76,33 +71,30 @@
         }
 
         /* Content container that will move in mobile */
-        .tab-content {
+        .orbitax-tab-content {
             display: none;
         }
 
-        .tab-content.active {
+        .orbitax-tab-content.orbitax-active {
             display: block;
         }
 
-        .features-grid {
+        .orbitax-features-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
             max-width: 900px;
         }
 
-        .tab-nav li:hover {
+        .orbitax-tab-nav li:hover {
             background-color: #f8f9fa;
-            color: #333;
         }
 
-        .tab-nav li.active {
+        .orbitax-tab-nav li.orbitax-active {
             background-color: #f8f9fa;
-            color: #333;
-            border-left-color: transparent;
         }
 
-        .tab-icon {
+        .orbitax-tab-icon {
             width: 20px;
             height: 20px;
             display: flex;
@@ -111,14 +103,14 @@
         }
 
         /* Main Content Area */
-        .main-content {
+        .orbitax-main-content {
             flex: 1;
             padding: 30px 30px;
             overflow-y: auto;
         }
 
         /* Header Section */
-        .header {
+        .orbitax-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -127,7 +119,7 @@
             transition: all 0.5s ease;
         }
 
-        .header-content h3 {
+        .orbitax-header-content h3 {
             font-size: 18px;
             font-weight: 500;
             line-height: 30px;
@@ -135,79 +127,80 @@
             margin-bottom: 8px;
         }
 
-        .header-content p {
+        .orbitax-header-content p {
             font-size: 13px;
             font-weight: 500;
             color: #666;
         }
 
-        .learn-more-btn {
-            padding: 10px 24px;
-            background-color: #ffffff;
-            border: 1px solid #d0d0d0;
+        .orbitax-learn-more-btn {
+            padding: 10px 24px !important;
+            background-color: #ffffff !important;
+            border: 1px solid #1a1a1a;
             border-radius: 24px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 14px !important;
             font-weight: 500;
             display: flex;
-            align-items: center;
-            gap: 8px;
+            align-items: center !important;
+            gap: 8px !important;
             transition: all 0.2s ease;
+            color: #1a1a1a !important;
         }
 
-        .learn-more-btn:hover {
+        .orbitax-learn-more-btn:hover {
             background-color: #f8f9fa;
             border-color: #999;
         }
 
-        .horizontal-line {
-            margin: 30px 0px;
+        .orbitax-horizontal-line {
+            margin: 30px 0px !important;
             border: none;
             height: 1px;
-            background-color: #e5e5e5;
+            background-color: #e5e5e5 !important;
         }
 
         /* Tab Content */
-        .tab-content {
+        .orbitax-tab-content {
             display: none;
         }
 
-        .tab-content.active {
+        .orbitax-tab-content.orbitax-active {
             display: block;
         }
 
-        .features-grid {
+        .orbitax-features-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 5px;
             max-width: 900px;
         }
 
-        .feature-card {
+        .orbitax-feature-card {
             background-color: #ffffff;
             padding: 12px 20px;
             border-radius: 8px;
             transition: all 0.5s ease;
         }
 
-        .feature-card:hover {
+        .orbitax-feature-card:hover {
             background-color: #f8f9fa;
         }
 
-        .feature-header {
+        .orbitax-feature-header {
             display: flex;
             align-items: center;
             gap: 8px;
             margin-bottom: 8px;
         }
 
-        .feature-card h3 {
+        .orbitax-feature-card h3 {
             font-size: 18px;
             font-weight: 500;
             color: #1a1a1a;
         }
 
-        .new-badge {
+        .orbitax-new-badge {
             background-color: #e8f5e9;
             color: #2e7d32;
             padding: 2px 8px;
@@ -217,7 +210,7 @@
             text-transform: uppercase;
         }
 
-        .feature-card p {
+        .orbitax-feature-card p {
             font-size: 14px;
             color: #666;
             line-height: 1.5;
@@ -225,29 +218,29 @@
         }
 
         /* Right Sidebar with Image */
-        .right-sidebar {
+        .orbitax-right-sidebar {
             width: 320px;
             padding: 40px 24px;
         }
 
-        .news-card {
+        .orbitax-news-card {
             background-color: #ffffff;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
-        .news-card img {
+        .orbitax-news-card img {
             width: 100%;
             height: 200px;
             object-fit: cover;
         }
 
-        .news-content {
+        .orbitax-news-content {
             padding: 20px;
         }
 
-        .news-content h3 {
+        .orbitax-news-content h3 {
             font-size: 16px;
             font-weight: 600;
             color: #1a1a1a;
@@ -255,7 +248,7 @@
             line-height: 1.4;
         }
 
-        .read-more {
+        .orbitax-read-more {
             color: #1a73e8;
             font-size: 14px;
             font-weight: 500;
@@ -265,35 +258,36 @@
             gap: 4px;
         }
 
-        .read-more:hover {
+        .orbitax-read-more:hover {
             text-decoration: underline;
         }
 
         /* Responsive */
         @media (max-width: 1200px) {
-            .right-sidebar {
+            .orbitax-right-sidebar {
                 display: none;
             }
         }
 
         @media (max-width: 768px) {
-            .container {
+            .orbitax-container {
                 flex-direction: column;
                 position: relative;
+                width: 94%;
             }
 
-            .sidebar {
+            .orbitax-sidebar {
                 width: 100%;
                 border-right: none;
                 padding: 0;
             }
 
-            .tab-nav {
+            .orbitax-tab-nav {
                 display: flex;
                 flex-direction: column;
             }
 
-            .tab-nav li {
+            .orbitax-tab-nav li {
                 padding: 16px 20px;
                 font-size: 14px;
                 border-left: none;
@@ -302,32 +296,32 @@
                 flex-direction: column;
             }
 
-            .tab-nav li.active {
+            .orbitax-tab-nav li.orbitax-active {
                 background-color: #ffffff;
                 color: #1a73e8;
                 border-left: none;
             }
 
-            .tab-nav li.active .tab-title {
+            .orbitax-tab-nav li.orbitax-active .orbitax-tab-title {
                 color: #1a73e8;
             }
 
-            .tab-nav li.active .toggle-icon {
+            .orbitax-tab-nav li.orbitax-active .orbitax-toggle-icon {
                 color: #1a73e8;
             }
 
             /* Show toggle icons on mobile */
-            .toggle-icon {
+            .orbitax-toggle-icon {
                 display: block;
             }
 
             /* Main content area hidden on mobile */
-            .main-content {
+            .orbitax-main-content {
                 display: none;
             }
 
             /* Tab content when inside tab nav */
-            .tab-nav .tab-content {
+            .orbitax-tab-nav .orbitax-tab-content {
                 display: none;
                 padding: 20px;
                 background-color: #f5f5f5;
@@ -337,12 +331,12 @@
                 border-bottom: 1px solid #e5e5e5;
             }
 
-            .tab-nav .tab-content.active {
+            .orbitax-tab-nav .orbitax-tab-content.orbitax-active {
                 display: block;
             }
 
             /* Show header only in first tab (research) */
-            .tab-nav #research.active .header {
+            .orbitax-tab-nav #orbitax-research.orbitax-active .orbitax-header {
                 display: flex !important;
                 flex-direction: column;
                 gap: 16px;
@@ -351,36 +345,37 @@
                 border-bottom: 1px solid #e5e5e5;
             }
 
-            .tab-nav #compliance.active .header,
-            .tab-nav #productivity.active .header {
+            .orbitax-tab-nav #orbitax-compliance.orbitax-active .orbitax-header,
+            .orbitax-tab-nav #orbitax-productivity.orbitax-active .orbitax-header {
                 display: none !important;
             }
 
-            .header-content h1 {
+            .orbitax-header-content h1 {
                 font-size: 20px;
             }
 
-            .header-content p {
+            .orbitax-header-content p {
                 font-size: 13px;
             }
 
-            .learn-more-btn {
+            .orbitax-learn-more-btn {
                 align-self: flex-start;
                 font-size: 13px;
                 padding: 8px 20px;
             }
-            .tab-content.active{
+
+            .orbitax-tab-content.orbitax-active {
                 width: 100%;
                 margin-left: 0px;
             }
 
             /* Grid becomes single column list on mobile */
-            .features-grid {
+            .orbitax-features-grid {
                 grid-template-columns: 1fr;
                 max-width: 100%;
             }
 
-            .feature-card {
+            .orbitax-feature-card {
                 padding: 0;
                 background-color: transparent;
                 border: none;
@@ -389,287 +384,288 @@
                 border-radius: 0;
             }
 
-            .feature-card:last-child {
+            .orbitax-feature-card:last-child {
                 border-bottom: none;
                 padding-bottom: 0;
             }
 
-            .feature-card:hover {
+            .orbitax-feature-card:hover {
                 box-shadow: none;
                 border-color: #e5e5e5;
             }
 
-            .feature-card h3 {
+            .orbitax-feature-card h3 {
                 font-size: 15px;
             }
 
-            .feature-card p {
+            .orbitax-feature-card p {
                 font-size: 13px;
             }
 
             /* Disable hover effects on mobile */
-            .tab-nav li:hover {
+            .orbitax-tab-nav li:hover {
                 background-color: #ffffff;
                 color: inherit;
             }
 
-            .tab-nav li.active:hover {
+            .orbitax-tab-nav li.orbitax-active:hover {
                 color: #1a73e8;
             }
         }
 
         /* Desktop view - hide mobile content and toggle icons */
         @media (min-width: 769px) {
-            .header:hover {
+            .orbitax-header:hover {
                 background-color: #F4F6F9;
             }
 
-            .main-content {
+            .orbitax-main-content {
                 border-left: 1px solid #e5e5e5;
             }
 
-            .mobile-tab-content {
+            .orbitax-mobile-tab-content {
                 display: none !important;
             }
 
-            .tab-header {
+            .orbitax-tab-header {
                 display: flex;
             }
 
-            .toggle-icon {
+            .orbitax-toggle-icon {
                 display: none !important;
             }
 
             /* Desktop hover to activate */
-            .tab-nav li:hover {
+            .orbitax-tab-nav li:hover {
                 background-color: #F4F6F9;
                 color: #175cff;
                 /* border-left-color: #1a73e8; */
             }
 
             /* Remove click activation on desktop, use hover */
-            .tab-nav li.active {
+            .orbitax-tab-nav li.orbitax-active {
                 background-color: #F4F6F9;
-                color: #175cff;
-                border-left-color: transparent;
             }
 
-            .tab-nav li:hover~li {
+            .orbitax-tab-nav li:hover~li {
                 /* Keep other tabs normal when hovering */
             }
         }
     </style>
-    <div class="container">
-        <!-- Left Sidebar - Tab Navigation -->
-        <aside class="sidebar">
-            <ul class="tab-nav">
-                <li data-tab="research">
-                    <div class="tab-header">
-                        <span class="tab-icon">📋</span>
-                        <span class="tab-title">Research & Planning</span>
-                        <span class="toggle-icon">−</span>
-                    </div>
-                </li>
-                <li data-tab="compliance">
-                    <div class="tab-header">
-                        <span class="tab-icon">📊</span>
-                        <span class="tab-title">Compliance & Reporting</span>
-                        <span class="toggle-icon">+</span>
-                    </div>
-                </li>
-                <li data-tab="productivity">
-                    <div class="tab-header">
-                        <span class="tab-icon">⚡</span>
-                        <span class="tab-title">Productivity & Collaboration</span>
-                        <span class="toggle-icon">+</span>
-                    </div>
-                </li>
-            </ul>
-        </aside>
+    <div class="orbitax-reset orbitax-body">
+        <div class="orbitax-container">
+            <!-- Left Sidebar - Tab Navigation -->
+            <aside class="orbitax-sidebar">
+                <ul class="orbitax-tab-nav">
+                    <li data-tab="orbitax-research">
+                        <div class="orbitax-tab-header">
+                            <span class="orbitax-tab-icon">📋</span>
+                            <span class="orbitax-tab-title">Research & Planning</span>
+                            <span class="orbitax-toggle-icon">−</span>
+                        </div>
+                    </li>
+                    <li data-tab="orbitax-compliance">
+                        <div class="orbitax-tab-header">
+                            <span class="orbitax-tab-icon">📊</span>
+                            <span class="orbitax-tab-title">Compliance & Reporting</span>
+                            <span class="orbitax-toggle-icon">+</span>
+                        </div>
+                    </li>
+                    <li data-tab="orbitax-productivity">
+                        <div class="orbitax-tab-header">
+                            <span class="orbitax-tab-icon">⚡</span>
+                            <span class="orbitax-tab-title">Productivity & Collaboration</span>
+                            <span class="orbitax-toggle-icon">+</span>
+                        </div>
+                    </li>
+                </ul>
+            </aside>
 
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Header -->
-            <div class="header">
-                <div class="header-content">
-                    <h3>Orbitax International Tax Platform — Technical Facts</h3>
-                    <p>Empower your team with the content-driven International Tax Platform</p>
+            <!-- Main Content Area -->
+            <main class="orbitax-main-content">
+                <!-- Header -->
+                <div class="orbitax-header">
+                    <div class="orbitax-header-content">
+                        <h3>Orbitax International Tax Platform — Technical Facts</h3>
+                        <p>Empower your team with the content-driven International Tax Platform</p>
+                    </div>
+                    <button class="orbitax-learn-more-btn">
+                        Learn more →
+                    </button>
                 </div>
-                <button class="learn-more-btn">
-                    Learn more →
-                </button>
-            </div>
 
-            <hr class="horizontal-line">
+                <hr class="orbitax-horizontal-line">
 
-            <!-- Tab Content: Research & Planning -->
-            <div class="tab-content active" id="research" data-tab-content="research">
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>Tax Research & Compliance</h3>
+                <!-- Tab Content: Research & Planning -->
+                <div class="orbitax-tab-content orbitax-active" id="orbitax-research"
+                    data-tab-content="orbitax-research">
+                    <div class="orbitax-features-grid">
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>Tax Research & Compliance</h3>
+                            </div>
+                            <p>Cross-border tax analysis and data</p>
                         </div>
-                        <p>Cross-border tax analysis and data</p>
-                    </div>
 
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>Entity Tracker</h3>
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>Entity Tracker</h3>
+                            </div>
+                            <p>Unify and empower your entity management</p>
                         </div>
-                        <p>Unify and empower your entity management</p>
-                    </div>
 
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>Entity Designer</h3>
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>Entity Designer</h3>
+                            </div>
+                            <p>Visualize and manage your entity data</p>
                         </div>
-                        <p>Visualize and manage your entity data</p>
-                    </div>
 
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>XatBot AI Tax Assistant</h3>
-                            <span class="new-badge">New</span>
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>XatBot AI Tax Assistant</h3>
+                                <span class="orbitax-new-badge">New</span>
+                            </div>
+                            <p>The AI assistant for tax questions</p>
                         </div>
-                        <p>The AI assistant for tax questions</p>
-                    </div>
 
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>Withholding Tax Implementer</h3>
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>Withholding Tax Implementer</h3>
+                            </div>
+                            <p>Provides compliance steps, forms & rates</p>
                         </div>
-                        <p>Provides compliance steps, forms & rates</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab Content: Compliance & Reporting -->
-            <div class="tab-content" id="compliance" data-tab-content="compliance">
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>Transfer Pricing Documentation</h3>
-                        </div>
-                        <p>Streamline your transfer pricing reports</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>Country-by-Country Reporting</h3>
-                        </div>
-                        <p>Automated CbCR filing and compliance</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>Tax Compliance Calendar</h3>
-                        </div>
-                        <p>Never miss a filing deadline</p>
-                    </div>
-
-                    <div class="feature-card">
-                        <div class="feature-header">
-                            <h3>Regulatory Updates</h3>
-                        </div>
-                        <p>Stay informed on global tax changes</p>
                     </div>
                 </div>
-            </div>
 
-            <!-- Tab Content: Productivity & Collaboration -->
-            <div class="tab-content" id="productivity" data-tab-content="productivity">
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <h3>Workflow Management</h3>
-                        <p>Organize and track your tax projects</p>
-                    </div>
+                <!-- Tab Content: Compliance & Reporting -->
+                <div class="orbitax-tab-content" id="orbitax-compliance" data-tab-content="orbitax-compliance">
+                    <div class="orbitax-features-grid">
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>Transfer Pricing Documentation</h3>
+                            </div>
+                            <p>Streamline your transfer pricing reports</p>
+                        </div>
 
-                    <div class="feature-card">
-                        <h3>Team Collaboration</h3>
-                        <p>Work together seamlessly across borders</p>
-                    </div>
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>Country-by-Country Reporting</h3>
+                            </div>
+                            <p>Automated CbCR filing and compliance</p>
+                        </div>
 
-                    <div class="feature-card">
-                        <h3>Document Management</h3>
-                        <p>Centralize your tax documents securely</p>
-                    </div>
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>Tax Compliance Calendar</h3>
+                            </div>
+                            <p>Never miss a filing deadline</p>
+                        </div>
 
-                    <div class="feature-card">
-                        <h3>Custom Dashboards</h3>
-                        <p>Visualize your data the way you need</p>
+                        <div class="orbitax-feature-card">
+                            <div class="orbitax-feature-header">
+                                <h3>Regulatory Updates</h3>
+                            </div>
+                            <p>Stay informed on global tax changes</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
 
-        <!-- Right Sidebar -->
-        <aside class="right-sidebar">
-            <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop"
-                    alt="City skyline">
-                <div class="news-content">
-                    <h3>OECD Inclusive Framework Reaches Consensus o...</h3>
-                    <a href="#" class="read-more">Read More →</a>
+                <!-- Tab Content: Productivity & Collaboration -->
+                <div class="orbitax-tab-content" id="orbitax-productivity" data-tab-content="orbitax-productivity">
+                    <div class="orbitax-features-grid">
+                        <div class="orbitax-feature-card">
+                            <h3>Workflow Management</h3>
+                            <p>Organize and track your tax projects</p>
+                        </div>
+
+                        <div class="orbitax-feature-card">
+                            <h3>Team Collaboration</h3>
+                            <p>Work together seamlessly across borders</p>
+                        </div>
+
+                        <div class="orbitax-feature-card">
+                            <h3>Document Management</h3>
+                            <p>Centralize your tax documents securely</p>
+                        </div>
+
+                        <div class="orbitax-feature-card">
+                            <h3>Custom Dashboards</h3>
+                            <p>Visualize your data the way you need</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </aside>
+            </main>
+
+            <!-- Right Sidebar -->
+            <aside class="orbitax-right-sidebar">
+                <div class="orbitax-news-card">
+                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop"
+                        alt="City skyline">
+                    <div class="orbitax-news-content">
+                        <h3>OECD Inclusive Framework Reaches Consensus o...</h3>
+                        <a href="#" class="orbitax-read-more">Read More →</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </div>
 
     <script>
         // Tab switching functionality
-        const tabNavItems = document.querySelectorAll('.tab-nav li');
-        const tabContents = document.querySelectorAll('.tab-content');
-        const mainContent = document.querySelector('.main-content');
-        const tabNav = document.querySelector('.tab-nav');
+        const orbitaxTabNavItems = document.querySelectorAll('.orbitax-tab-nav li');
+        const orbitaxTabContents = document.querySelectorAll('.orbitax-tab-content');
+        const orbitaxMainContent = document.querySelector('.orbitax-main-content');
+        const orbitaxTabNav = document.querySelector('.orbitax-tab-nav');
 
         // Function to check if mobile view
-        function isMobile() {
+        function orbitaxIsMobile() {
             return window.innerWidth <= 768;
         }
 
         // Desktop: Hover to show content
-        tabNavItems.forEach(item => {
+        orbitaxTabNavItems.forEach(item => {
             // Desktop hover behavior
             item.addEventListener('mouseenter', () => {
-                if (!isMobile()) {
+                if (!orbitaxIsMobile()) {
                     const tabId = item.getAttribute('data-tab');
                     // Remove active class from all tabs
-                    tabNavItems.forEach(nav => nav.classList.remove('active'));
+                    orbitaxTabNavItems.forEach(nav => nav.classList.remove('orbitax-active'));
                     // Add active class to current tab
-                    item.classList.add('active');
+                    item.classList.add('orbitax-active');
                     // Hide all tab contents
-                    tabContents.forEach(content => content.classList.remove('active'));
+                    orbitaxTabContents.forEach(content => content.classList.remove('orbitax-active'));
                     // Show hovered tab content
                     const desktopContent = document.getElementById(tabId);
                     if (desktopContent) {
-                        desktopContent.classList.add('active');
+                        desktopContent.classList.add('orbitax-active');
                     }
                 }
             });
 
             // Mobile: Click to toggle
             item.addEventListener('click', () => {
-                if (isMobile()) {
-                    const wasActive = item.classList.contains('active');
-                    const toggleIcon = item.querySelector('.toggle-icon');
+                if (orbitaxIsMobile()) {
+                    const wasActive = item.classList.contains('orbitax-active');
+                    const toggleIcon = item.querySelector('.orbitax-toggle-icon');
                     const tabId = item.getAttribute('data-tab');
                     const tabContent = document.getElementById(tabId);
 
                     // Remove active class from all tabs
-                    tabNavItems.forEach(nav => {
-                        nav.classList.remove('active');
-                        const icon = nav.querySelector('.toggle-icon');
+                    orbitaxTabNavItems.forEach(nav => {
+                        nav.classList.remove('orbitax-active');
+                        const icon = nav.querySelector('.orbitax-toggle-icon');
                         if (icon) icon.textContent = '+';
                     });
 
                     // Hide all content
-                    tabContents.forEach(content => content.classList.remove('active'));
+                    orbitaxTabContents.forEach(content => content.classList.remove('orbitax-active'));
 
                     // Toggle current tab
                     if (!wasActive && tabContent) {
-                        item.classList.add('active');
+                        item.classList.add('orbitax-active');
                         if (toggleIcon) toggleIcon.textContent = '−';
-                        tabContent.classList.add('active');
+                        tabContent.classList.add('orbitax-active');
 
                         // Move content directly after this li element
                         item.parentNode.insertBefore(tabContent, item.nextSibling);
@@ -677,42 +673,42 @@
                 } else {
                     // Desktop click behavior (optional)
                     const tabId = item.getAttribute('data-tab');
-                    tabContents.forEach(content => content.classList.remove('active'));
+                    orbitaxTabContents.forEach(content => content.classList.remove('orbitax-active'));
                     const desktopContent = document.getElementById(tabId);
                     if (desktopContent) {
-                        desktopContent.classList.add('active');
+                        desktopContent.classList.add('orbitax-active');
                     }
                 }
             });
         });
 
         // Handle window resize
-        let previousWidth = window.innerWidth;
+        let orbitaxPreviousWidth = window.innerWidth;
         window.addEventListener('resize', () => {
             const currentWidth = window.innerWidth;
             // If switching between mobile and desktop
-            if ((previousWidth <= 768 && currentWidth > 768) ||
-                (previousWidth > 768 && currentWidth <= 768)) {
+            if ((orbitaxPreviousWidth <= 768 && currentWidth > 768) ||
+                (orbitaxPreviousWidth > 768 && currentWidth <= 768)) {
 
                 if (currentWidth > 768) {
                     // Moving to desktop - return content to main area
-                    tabContents.forEach(content => {
-                        if (content.parentNode !== mainContent) {
-                            mainContent.appendChild(content);
+                    orbitaxTabContents.forEach(content => {
+                        if (content.parentNode !== orbitaxMainContent) {
+                            orbitaxMainContent.appendChild(content);
                         }
                     });
                     // Reset all tabs
-                    tabNavItems.forEach((item, index) => {
-                        const toggleIcon = item.querySelector('.toggle-icon');
+                    orbitaxTabNavItems.forEach((item, index) => {
+                        const toggleIcon = item.querySelector('.orbitax-toggle-icon');
                         if (toggleIcon) {
                             toggleIcon.textContent = index === 0 ? '−' : '+';
                         }
                     });
                     // Show first content
-                    tabContents[0].classList.add('active');
+                    orbitaxTabContents[0].classList.add('orbitax-active');
                 } else {
                     // Moving to mobile - position active content
-                    const activeTab = document.querySelector('.tab-nav li.active');
+                    const activeTab = document.querySelector('.orbitax-tab-nav li.orbitax-active');
                     if (activeTab) {
                         const activeTabId = activeTab.getAttribute('data-tab');
                         const activeContent = document.getElementById(activeTabId);
@@ -722,22 +718,22 @@
                     }
                 }
             }
-            previousWidth = currentWidth;
+            orbitaxPreviousWidth = currentWidth;
         });
 
         // Initial setup
-        const firstTab = tabNavItems[0];
-        const firstTabId = firstTab.getAttribute('data-tab');
-        const firstContent = document.getElementById(firstTabId);
+        const orbitaxFirstTab = orbitaxTabNavItems[0];
+        const orbitaxFirstTabId = orbitaxFirstTab.getAttribute('data-tab');
+        const orbitaxFirstContent = document.getElementById(orbitaxFirstTabId);
 
-        if (isMobile()) {
-            if (firstContent) {
+        if (orbitaxIsMobile()) {
+            if (orbitaxFirstContent) {
                 // Insert content directly after first tab
-                firstTab.parentNode.insertBefore(firstContent, firstTab.nextSibling);
+                orbitaxFirstTab.parentNode.insertBefore(orbitaxFirstContent, orbitaxFirstTab.nextSibling);
             }
         } else {
             // Desktop: set first tab as active
-            firstTab.classList.add('active');
+            orbitaxFirstTab.classList.add('orbitax-active');
         }
     </script>
 </body>
