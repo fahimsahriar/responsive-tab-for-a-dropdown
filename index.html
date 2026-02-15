@@ -1,12 +1,464 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orbitax International Tax Platform</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: auto;
+            align-items: flex-start;
+            border: 1px solid blue;
+        }
+
+        /* Left Sidebar - Tab Navigation */
+        .sidebar {
+            box-sizing: content-box;
+            padding: 24px 30px;
+            width: 320px;
+        }
+
+        .tab-nav {
+            list-style: none;
+        }
+
+        .tab-nav li {
+            padding: 16px 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #666;
+            font-size: 15px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            border-left: 3px solid transparent;
+            flex-direction: column;
+            align-items: flex-start;
+            border-radius: 8px;
+        }
+
+        .tab-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .tab-title {
+            flex: 1;
+        }
+
+        .toggle-icon {
+            display: none;
+            font-size: 24px;
+            font-weight: 300;
+            color: #666;
+            margin-left: auto;
+        }
+
+        /* Content container that will move in mobile */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 900px;
+        }
+
+        .tab-nav li:hover {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .tab-nav li.active {
+            background-color: #f8f9fa;
+            color: #333;
+            border-left-color: transparent;
+        }
+
+        .tab-icon {
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            flex: 1;
+            padding: 30px 30px;
+            overflow-y: auto;
+        }
+
+        /* Header Section */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+        }
+
+        .header-content h3 {
+            font-size: 18px;
+            font-weight: 500;
+            line-height: 30px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+
+        .header-content p {
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .learn-more-btn {
+            padding: 10px 24px;
+            background-color: #ffffff;
+            border: 1px solid #d0d0d0;
+            border-radius: 24px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+
+        .learn-more-btn:hover {
+            background-color: #f8f9fa;
+            border-color: #999;
+        }
+
+        .horizontal-line {
+            margin: 30px 0px;
+            border: none;
+            height: 1px;
+            background-color: #e5e5e5;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 5px;
+            max-width: 900px;
+        }
+
+        .feature-card {
+            background-color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
+            transition: all 0.5s ease;
+        }
+
+        .feature-card:hover {
+            background-color: #f8f9fa;
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .feature-card h3 {
+            font-size: 18px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        .new-badge {
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .feature-card p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        /* Right Sidebar with Image */
+        .right-sidebar {
+            width: 320px;
+            padding: 40px 24px;
+        }
+
+        .news-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .news-content {
+            padding: 20px;
+        }
+
+        .news-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .read-more {
+            color: #1a73e8;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .right-sidebar {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                position: relative;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                padding: 0;
+            }
+
+            .tab-nav {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .tab-nav li {
+                padding: 16px 20px;
+                font-size: 14px;
+                border-left: none;
+                background-color: #ffffff;
+                border-bottom: 1px solid #e5e5e5;
+                flex-direction: column;
+            }
+
+            .tab-nav li.active {
+                background-color: #ffffff;
+                color: #1a73e8;
+                border-left: none;
+            }
+
+            .tab-nav li.active .tab-title {
+                color: #1a73e8;
+            }
+
+            .tab-nav li.active .toggle-icon {
+                color: #1a73e8;
+            }
+
+            /* Show toggle icons on mobile */
+            .toggle-icon {
+                display: block;
+            }
+
+            /* Main content area hidden on mobile */
+            .main-content {
+                display: none;
+            }
+
+            /* Tab content when inside tab nav */
+            .tab-nav .tab-content {
+                display: none;
+                padding: 20px;
+                background-color: #f5f5f5;
+                margin: 0;
+                width: calc(100% + 40px);
+                margin-left: -20px;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .tab-nav .tab-content.active {
+                display: block;
+            }
+
+            /* Show header only in first tab (research) */
+            .tab-nav #research.active .header {
+                display: flex !important;
+                flex-direction: column;
+                gap: 16px;
+                padding-bottom: 24px;
+                margin-bottom: 24px;
+                border-bottom: 1px solid #e5e5e5;
+            }
+
+            .tab-nav #compliance.active .header,
+            .tab-nav #productivity.active .header {
+                display: none !important;
+            }
+
+            .header-content h1 {
+                font-size: 20px;
+            }
+
+            .header-content p {
+                font-size: 13px;
+            }
+
+            .learn-more-btn {
+                align-self: flex-start;
+                font-size: 13px;
+                padding: 8px 20px;
+            }
+            .tab-content.active{
+                width: 100%;
+                margin-left: 0px;
+            }
+
+            /* Grid becomes single column list on mobile */
+            .features-grid {
+                grid-template-columns: 1fr;
+                max-width: 100%;
+            }
+
+            .feature-card {
+                padding: 0;
+                background-color: transparent;
+                border: none;
+                border-bottom: 1px solid #e5e5e5;
+                padding-bottom: 24px;
+                border-radius: 0;
+            }
+
+            .feature-card:last-child {
+                border-bottom: none;
+                padding-bottom: 0;
+            }
+
+            .feature-card:hover {
+                box-shadow: none;
+                border-color: #e5e5e5;
+            }
+
+            .feature-card h3 {
+                font-size: 15px;
+            }
+
+            .feature-card p {
+                font-size: 13px;
+            }
+
+            /* Disable hover effects on mobile */
+            .tab-nav li:hover {
+                background-color: #ffffff;
+                color: inherit;
+            }
+
+            .tab-nav li.active:hover {
+                color: #1a73e8;
+            }
+        }
+
+        /* Desktop view - hide mobile content and toggle icons */
+        @media (min-width: 769px) {
+            .header:hover {
+                background-color: #F4F6F9;
+            }
+
+            .main-content {
+                border-left: 1px solid #e5e5e5;
+            }
+
+            .mobile-tab-content {
+                display: none !important;
+            }
+
+            .tab-header {
+                display: flex;
+            }
+
+            .toggle-icon {
+                display: none !important;
+            }
+
+            /* Desktop hover to activate */
+            .tab-nav li:hover {
+                background-color: #F4F6F9;
+                color: #175cff;
+                /* border-left-color: #1a73e8; */
+            }
+
+            /* Remove click activation on desktop, use hover */
+            .tab-nav li.active {
+                background-color: #F4F6F9;
+                color: #175cff;
+                border-left-color: transparent;
+            }
+
+            .tab-nav li:hover~li {
+                /* Keep other tabs normal when hovering */
+            }
+        }
+    </style>
     <div class="container">
         <!-- Left Sidebar - Tab Navigation -->
         <aside class="sidebar">
@@ -40,7 +492,7 @@
             <!-- Header -->
             <div class="header">
                 <div class="header-content">
-                    <h1>Orbitax International Tax Platform — Technical Facts</h1>
+                    <h3>Orbitax International Tax Platform — Technical Facts</h3>
                     <p>Empower your team with the content-driven International Tax Platform</p>
                 </div>
                 <button class="learn-more-btn">
@@ -61,12 +513,16 @@
                     </div>
 
                     <div class="feature-card">
-                        <h3>Entity Tracker</h3>
+                        <div class="feature-header">
+                            <h3>Entity Tracker</h3>
+                        </div>
                         <p>Unify and empower your entity management</p>
                     </div>
 
                     <div class="feature-card">
-                        <h3>Entity Designer</h3>
+                        <div class="feature-header">
+                            <h3>Entity Designer</h3>
+                        </div>
                         <p>Visualize and manage your entity data</p>
                     </div>
 
@@ -79,7 +535,9 @@
                     </div>
 
                     <div class="feature-card">
-                        <h3>Withholding Tax Implementer</h3>
+                        <div class="feature-header">
+                            <h3>Withholding Tax Implementer</h3>
+                        </div>
                         <p>Provides compliance steps, forms & rates</p>
                     </div>
                 </div>
@@ -89,22 +547,30 @@
             <div class="tab-content" id="compliance" data-tab-content="compliance">
                 <div class="features-grid">
                     <div class="feature-card">
-                        <h3>Transfer Pricing Documentation</h3>
+                        <div class="feature-header">
+                            <h3>Transfer Pricing Documentation</h3>
+                        </div>
                         <p>Streamline your transfer pricing reports</p>
                     </div>
 
                     <div class="feature-card">
-                        <h3>Country-by-Country Reporting</h3>
+                        <div class="feature-header">
+                            <h3>Country-by-Country Reporting</h3>
+                        </div>
                         <p>Automated CbCR filing and compliance</p>
                     </div>
 
                     <div class="feature-card">
-                        <h3>Tax Compliance Calendar</h3>
+                        <div class="feature-header">
+                            <h3>Tax Compliance Calendar</h3>
+                        </div>
                         <p>Never miss a filing deadline</p>
                     </div>
 
                     <div class="feature-card">
-                        <h3>Regulatory Updates</h3>
+                        <div class="feature-header">
+                            <h3>Regulatory Updates</h3>
+                        </div>
                         <p>Stay informed on global tax changes</p>
                     </div>
                 </div>
@@ -139,7 +605,8 @@
         <!-- Right Sidebar -->
         <aside class="right-sidebar">
             <div class="news-card">
-                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop" alt="City skyline">
+                <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop"
+                    alt="City skyline">
                 <div class="news-content">
                     <h3>OECD Inclusive Framework Reaches Consensus o...</h3>
                     <a href="#" class="read-more">Read More →</a>
@@ -187,7 +654,7 @@
                     const toggleIcon = item.querySelector('.toggle-icon');
                     const tabId = item.getAttribute('data-tab');
                     const tabContent = document.getElementById(tabId);
-                    
+
                     // Remove active class from all tabs
                     tabNavItems.forEach(nav => {
                         nav.classList.remove('active');
@@ -203,7 +670,7 @@
                         item.classList.add('active');
                         if (toggleIcon) toggleIcon.textContent = '−';
                         tabContent.classList.add('active');
-                        
+
                         // Move content directly after this li element
                         item.parentNode.insertBefore(tabContent, item.nextSibling);
                     }
@@ -224,9 +691,9 @@
         window.addEventListener('resize', () => {
             const currentWidth = window.innerWidth;
             // If switching between mobile and desktop
-            if ((previousWidth <= 768 && currentWidth > 768) || 
+            if ((previousWidth <= 768 && currentWidth > 768) ||
                 (previousWidth > 768 && currentWidth <= 768)) {
-                
+
                 if (currentWidth > 768) {
                     // Moving to desktop - return content to main area
                     tabContents.forEach(content => {
@@ -262,7 +729,7 @@
         const firstTab = tabNavItems[0];
         const firstTabId = firstTab.getAttribute('data-tab');
         const firstContent = document.getElementById(firstTabId);
-        
+
         if (isMobile()) {
             if (firstContent) {
                 // Insert content directly after first tab
@@ -274,4 +741,5 @@
         }
     </script>
 </body>
+
 </html>
