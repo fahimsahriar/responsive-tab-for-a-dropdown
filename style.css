@@ -40,6 +40,7 @@ body {
     border-left: 3px solid transparent;
     flex-direction: column;
     align-items: flex-start;
+    border-radius: 8px;
 }
 
 .tab-header {
@@ -83,9 +84,9 @@ body {
 }
 
 .tab-nav li.active {
-    background-color: #e8f2ff;
-    color: #1a73e8;
-    border-left-color: #1a73e8;
+    background-color: #f8f9fa;
+    color: #333;
+    border-left-color: transparent;
 }
 
 .tab-icon {
@@ -409,15 +410,15 @@ body {
 
     /* Desktop hover to activate */
     .tab-nav li:hover {
-        background-color: #e8f2ff;
-        color: #1a73e8;
-        border-left-color: #1a73e8;
+        background-color: #F4F6F9;
+        color: #175cff;
+        /* border-left-color: #1a73e8; */
     }
 
     /* Remove click activation on desktop, use hover */
     .tab-nav li.active {
-        background-color: #ffffff;
-        color: #666;
+        background-color: #F4F6F9;
+        color: #175cff;
         border-left-color: transparent;
     }
 

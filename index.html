@@ -11,7 +11,7 @@
         <!-- Left Sidebar - Tab Navigation -->
         <aside class="sidebar">
             <ul class="tab-nav">
-                <li class="active" data-tab="research">
+                <li data-tab="research">
                     <div class="tab-header">
                         <span class="tab-icon">📋</span>
                         <span class="tab-title">Research & Planning</span>
@@ -164,6 +164,10 @@
             item.addEventListener('mouseenter', () => {
                 if (!isMobile()) {
                     const tabId = item.getAttribute('data-tab');
+                    // Remove active class from all tabs
+                    tabNavItems.forEach(nav => nav.classList.remove('active'));
+                    // Add active class to current tab
+                    item.classList.add('active');
                     // Hide all tab contents
                     tabContents.forEach(content => content.classList.remove('active'));
                     // Show hovered tab content
@@ -252,15 +256,19 @@
             previousWidth = currentWidth;
         });
 
-        // Initial setup for mobile
+        // Initial setup
+        const firstTab = tabNavItems[0];
+        const firstTabId = firstTab.getAttribute('data-tab');
+        const firstContent = document.getElementById(firstTabId);
+        
         if (isMobile()) {
-            const firstTab = tabNavItems[0];
-            const firstTabId = firstTab.getAttribute('data-tab');
-            const firstContent = document.getElementById(firstTabId);
             if (firstContent) {
                 // Insert content directly after first tab
                 firstTab.parentNode.insertBefore(firstContent, firstTab.nextSibling);
             }
+        } else {
+            // Desktop: set first tab as active
+            firstTab.classList.add('active');
         }
     </script>
 </body>
