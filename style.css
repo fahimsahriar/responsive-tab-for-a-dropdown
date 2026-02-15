@@ -61,41 +61,20 @@ body {
     margin-left: auto;
 }
 
-/* Mobile tab content - hidden on desktop */
-.mobile-tab-content {
+/* Content container that will move in mobile */
+.tab-content {
     display: none;
-    width: 100%;
-    margin-top: 16px;
 }
 
-.features-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+.tab-content.active {
+    display: block;
 }
 
-.feature-item {
-    padding: 0;
-}
-
-.feature-item h3 {
-    font-size: 16px;
-    font-weight: 600;
-    color: #1a1a1a;
-    margin-bottom: 4px;
-}
-
-.feature-item p {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
-}
-
-.feature-item .feature-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 4px;
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 900px;
 }
 
 .tab-nav li:hover {
@@ -278,12 +257,18 @@ body {
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
+        position: relative;
     }
 
     .sidebar {
         width: 100%;
         border-right: none;
-        padding: 16px 0;
+        padding: 0;
+    }
+
+    .tab-nav {
+        display: flex;
+        flex-direction: column;
     }
 
     .tab-nav li {
@@ -292,6 +277,7 @@ body {
         border-left: none;
         background-color: #ffffff;
         border-bottom: 1px solid #e5e5e5;
+        flex-direction: column;
     }
 
     .tab-nav li.active {
@@ -313,14 +299,29 @@ body {
         display: block;
     }
 
-    /* Show mobile content only for active tab */
-    .tab-nav li.active .mobile-tab-content {
-        display: block;
-        padding: 20px;
-        background-color: #f5f5f5;
+    /* Main content area hidden on mobile */
+    .main-content {
+        display: none;
     }
 
-    .mobile-tab-content .header {
+    /* Tab content when inside tab nav */
+    .tab-nav .tab-content {
+        display: none;
+        padding: 20px;
+        background-color: #f5f5f5;
+        margin: 0;
+        width: calc(100% + 40px);
+        margin-left: -20px;
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .tab-nav .tab-content.active {
+        display: block;
+    }
+
+    /* Show header only in first tab (research) */
+    .tab-nav #research.active .header {
+        display: flex !important;
         flex-direction: column;
         gap: 16px;
         padding-bottom: 24px;
@@ -328,37 +329,57 @@ body {
         border-bottom: 1px solid #e5e5e5;
     }
 
-    .mobile-tab-content .header-content h1 {
+    .tab-nav #compliance.active .header,
+    .tab-nav #productivity.active .header {
+        display: none !important;
+    }
+
+    .header-content h1 {
         font-size: 20px;
     }
 
-    .mobile-tab-content .header-content p {
+    .header-content p {
         font-size: 13px;
     }
 
-    .mobile-tab-content .learn-more-btn {
+    .learn-more-btn {
         align-self: flex-start;
         font-size: 13px;
         padding: 8px 20px;
     }
 
-    .features-list {
+    /* Grid becomes single column list on mobile */
+    .features-grid {
+        grid-template-columns: 1fr;
         gap: 24px;
+        max-width: 100%;
     }
 
-    .feature-item {
-        padding-bottom: 24px;
+    .feature-card {
+        padding: 0;
+        background-color: transparent;
+        border: none;
         border-bottom: 1px solid #e5e5e5;
+        padding-bottom: 24px;
+        border-radius: 0;
     }
 
-    .feature-item:last-child {
+    .feature-card:last-child {
         border-bottom: none;
         padding-bottom: 0;
     }
 
-    /* Hide desktop main content on mobile */
-    .main-content {
-        display: none;
+    .feature-card:hover {
+        box-shadow: none;
+        border-color: #e5e5e5;
+    }
+
+    .feature-card h3 {
+        font-size: 15px;
+    }
+
+    .feature-card p {
+        font-size: 13px;
     }
 
     /* Disable hover effects on mobile */
