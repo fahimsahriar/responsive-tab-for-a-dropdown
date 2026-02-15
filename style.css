@@ -53,6 +53,14 @@ body {
     flex: 1;
 }
 
+.toggle-icon {
+    display: none;
+    font-size: 24px;
+    font-weight: 300;
+    color: #666;
+    margin-left: auto;
+}
+
 /* Mobile tab content - hidden on desktop */
 .mobile-tab-content {
     display: none;
@@ -283,6 +291,7 @@ body {
         font-size: 14px;
         border-left: none;
         background-color: #ffffff;
+        border-bottom: 1px solid #e5e5e5;
     }
 
     .tab-nav li.active {
@@ -293,6 +302,15 @@ body {
 
     .tab-nav li.active .tab-title {
         color: #1a73e8;
+    }
+
+    .tab-nav li.active .toggle-icon {
+        color: #1a73e8;
+    }
+
+    /* Show toggle icons on mobile */
+    .toggle-icon {
+        display: block;
     }
 
     /* Show mobile content only for active tab */
@@ -342,9 +360,19 @@ body {
     .main-content {
         display: none;
     }
+
+    /* Disable hover effects on mobile */
+    .tab-nav li:hover {
+        background-color: #ffffff;
+        color: inherit;
+    }
+
+    .tab-nav li.active:hover {
+        color: #1a73e8;
+    }
 }
 
-/* Desktop view - hide mobile content */
+/* Desktop view - hide mobile content and toggle icons */
 @media (min-width: 769px) {
     .mobile-tab-content {
         display: none !important;
@@ -352,5 +380,27 @@ body {
 
     .tab-header {
         display: flex;
+    }
+
+    .toggle-icon {
+        display: none !important;
+    }
+
+    /* Desktop hover to activate */
+    .tab-nav li:hover {
+        background-color: #e8f2ff;
+        color: #1a73e8;
+        border-left-color: #1a73e8;
+    }
+
+    /* Remove click activation on desktop, use hover */
+    .tab-nav li.active {
+        background-color: #ffffff;
+        color: #666;
+        border-left-color: transparent;
+    }
+
+    .tab-nav li:hover~li {
+        /* Keep other tabs normal when hovering */
     }
 }

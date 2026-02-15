@@ -15,6 +15,7 @@
                     <div class="tab-header">
                         <span class="tab-icon">📋</span>
                         <span class="tab-title">Research & Planning</span>
+                        <span class="toggle-icon">−</span>
                     </div>
                     <!-- Mobile Content -->
                     <div class="mobile-tab-content">
@@ -58,6 +59,7 @@
                     <div class="tab-header">
                         <span class="tab-icon">📊</span>
                         <span class="tab-title">Compliance & Reporting</span>
+                        <span class="toggle-icon">+</span>
                     </div>
                     <!-- Mobile Content -->
                     <div class="mobile-tab-content">
@@ -85,6 +87,7 @@
                     <div class="tab-header">
                         <span class="tab-icon">⚡</span>
                         <span class="tab-title">Productivity & Collaboration</span>
+                        <span class="toggle-icon">+</span>
                     </div>
                     <!-- Mobile Content -->
                     <div class="mobile-tab-content">
@@ -249,22 +252,73 @@
         const tabNavItems = document.querySelectorAll('.tab-nav li');
         const tabContents = document.querySelectorAll('.tab-content');
 
+        // Function to check if mobile view
+        function isMobile() {
+            return window.innerWidth <= 768;
+        }
+
+        // Desktop: Hover to show content
         tabNavItems.forEach(item => {
-            item.addEventListener('click', () => {
-                // Remove active class from all tabs
-                tabNavItems.forEach(nav => nav.classList.remove('active'));
-                tabContents.forEach(content => content.classList.remove('active'));
-
-                // Add active class to clicked tab
-                item.classList.add('active');
-
-                // Show corresponding content (desktop view)
-                const tabId = item.getAttribute('data-tab');
-                const desktopContent = document.getElementById(tabId);
-                if (desktopContent) {
-                    desktopContent.classList.add('active');
+            // Desktop hover behavior
+            item.addEventListener('mouseenter', () => {
+                if (!isMobile()) {
+                    const tabId = item.getAttribute('data-tab');
+                    // Hide all tab contents
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    // Show hovered tab content
+                    const desktopContent = document.getElementById(tabId);
+                    if (desktopContent) {
+                        desktopContent.classList.add('active');
+                    }
                 }
             });
+
+            // Mobile: Click to toggle
+            item.addEventListener('click', () => {
+                if (isMobile()) {
+                    const wasActive = item.classList.contains('active');
+                    const toggleIcon = item.querySelector('.toggle-icon');
+                    
+                    // Remove active class from all tabs
+                    tabNavItems.forEach(nav => {
+                        nav.classList.remove('active');
+                        const icon = nav.querySelector('.toggle-icon');
+                        if (icon) icon.textContent = '+';
+                    });
+
+                    // Toggle current tab
+                    if (!wasActive) {
+                        item.classList.add('active');
+                        if (toggleIcon) toggleIcon.textContent = '−';
+                    }
+                } else {
+                    // Desktop click behavior (optional)
+                    const tabId = item.getAttribute('data-tab');
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    const desktopContent = document.getElementById(tabId);
+                    if (desktopContent) {
+                        desktopContent.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Handle window resize
+        let previousWidth = window.innerWidth;
+        window.addEventListener('resize', () => {
+            const currentWidth = window.innerWidth;
+            // If switching between mobile and desktop
+            if ((previousWidth <= 768 && currentWidth > 768) || 
+                (previousWidth > 768 && currentWidth <= 768)) {
+                // Reset icons when switching views
+                tabNavItems.forEach((item, index) => {
+                    const toggleIcon = item.querySelector('.toggle-icon');
+                    if (toggleIcon) {
+                        toggleIcon.textContent = index === 0 ? '−' : '+';
+                    }
+                });
+            }
+            previousWidth = currentWidth;
         });
     </script>
 </body>
