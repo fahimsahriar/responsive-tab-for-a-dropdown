@@ -184,12 +184,14 @@
         }
 
         /* Make feature and news cards show pointer to indicate clickability */
-        .orbitax-feature-card {
+        .orbitax-feature-card,
+        .orbitax-news-card {
             cursor: pointer;
         }
 
         /* Anchor inside cards should fill the card without changing design */
-        .orbitax-card-link {
+        .orbitax-card-link,
+        .orbitax-news-link {
             display: block;
             color: inherit;
             text-decoration: none;
@@ -229,7 +231,58 @@
             font-weight: 500;
         }
 
+        /* Right Sidebar with Image */
+        .orbitax-right-sidebar {
+            width: 320px;
+            padding: 40px 24px;
+        }
+
+        .orbitax-news-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .orbitax-news-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .orbitax-news-content {
+            padding: 20px;
+        }
+
+        .orbitax-news-content h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            line-height: 1.4;
+        }
+
+        .orbitax-read-more {
+            color: #1a73e8;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .orbitax-read-more:hover {
+            text-decoration: underline;
+        }
+
         /* Responsive */
+        @media (max-width: 1200px) {
+            .orbitax-right-sidebar {
+                display: none;
+            }
+        }
+
         @media (max-width: 768px) {
             .orbitax-container {
                 flex-direction: column;
@@ -459,7 +512,8 @@
                 <hr class="orbitax-horizontal-line">
 
                 <!-- Tab Content: Research & Planning -->
-                <div class="orbitax-tab-content orbitax-active" id="orbitax-research" data-tab-content="orbitax-research">
+                <div class="orbitax-tab-content orbitax-active" id="orbitax-research"
+                    data-tab-content="orbitax-research">
                     <div class="orbitax-features-grid">
                         <div class="orbitax-feature-card">
                             <a href="#" class="orbitax-card-link">
@@ -584,6 +638,19 @@
                 </div>
             </main>
 
+            <!-- Right Sidebar -->
+            <aside class="orbitax-right-sidebar">
+                <div class="orbitax-news-card">
+                    <a href="#" class="orbitax-news-link">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop"
+                            alt="City skyline">
+                        <div class="orbitax-news-content">
+                            <h3>OECD Inclusive Framework Reaches Consensus o...</h3>
+                            <span class="orbitax-read-more">Read More →</span>
+                        </div>
+                    </a>
+                </div>
+            </aside>
         </div>
     </div>
 
