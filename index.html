@@ -183,6 +183,18 @@
             transition: all 0.5s ease;
         }
 
+        /* Make feature and news cards show pointer to indicate clickability */
+        .orbitax-feature-card {
+            cursor: pointer;
+        }
+
+        /* Anchor inside cards should fill the card without changing design */
+        .orbitax-card-link {
+            display: block;
+            color: inherit;
+            text-decoration: none;
+        }
+
         .orbitax-feature-card:hover {
             background-color: #f8f9fa;
         }
@@ -217,58 +229,7 @@
             font-weight: 500;
         }
 
-        /* Right Sidebar with Image */
-        .orbitax-right-sidebar {
-            width: 320px;
-            padding: 40px 24px;
-        }
-
-        .orbitax-news-card {
-            background-color: #ffffff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-        }
-
-        .orbitax-news-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-        }
-
-        .orbitax-news-content {
-            padding: 20px;
-        }
-
-        .orbitax-news-content h3 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1a1a1a;
-            margin-bottom: 12px;
-            line-height: 1.4;
-        }
-
-        .orbitax-read-more {
-            color: #1a73e8;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-
-        .orbitax-read-more:hover {
-            text-decoration: underline;
-        }
-
         /* Responsive */
-        @media (max-width: 1200px) {
-            .orbitax-right-sidebar {
-                display: none;
-            }
-        }
-
         @media (max-width: 768px) {
             .orbitax-container {
                 flex-direction: column;
@@ -501,39 +462,49 @@
                 <div class="orbitax-tab-content orbitax-active" id="orbitax-research" data-tab-content="orbitax-research">
                     <div class="orbitax-features-grid">
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>Tax Research & Compliance</h3>
-                            </div>
-                            <p>Cross-border tax analysis and data</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>Tax Research & Compliance</h3>
+                                </div>
+                                <p>Cross-border tax analysis and data</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>Entity Tracker</h3>
-                            </div>
-                            <p>Unify and empower your entity management</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>Entity Tracker</h3>
+                                </div>
+                                <p>Unify and empower your entity management</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>Entity Designer</h3>
-                            </div>
-                            <p>Visualize and manage your entity data</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>Entity Designer</h3>
+                                </div>
+                                <p>Visualize and manage your entity data</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>XatBot AI Tax Assistant</h3>
-                                <span class="orbitax-new-badge">New</span>
-                            </div>
-                            <p>The AI assistant for tax questions</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>XatBot AI Tax Assistant</h3>
+                                    <span class="orbitax-new-badge">New</span>
+                                </div>
+                                <p>The AI assistant for tax questions</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>Withholding Tax Implementer</h3>
-                            </div>
-                            <p>Provides compliance steps, forms & rates</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>Withholding Tax Implementer</h3>
+                                </div>
+                                <p>Provides compliance steps, forms & rates</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -542,31 +513,39 @@
                 <div class="orbitax-tab-content" id="orbitax-compliance" data-tab-content="orbitax-compliance">
                     <div class="orbitax-features-grid">
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>Transfer Pricing Documentation</h3>
-                            </div>
-                            <p>Streamline your transfer pricing reports</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>Transfer Pricing Documentation</h3>
+                                </div>
+                                <p>Streamline your transfer pricing reports</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>Country-by-Country Reporting</h3>
-                            </div>
-                            <p>Automated CbCR filing and compliance</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>Country-by-Country Reporting</h3>
+                                </div>
+                                <p>Automated CbCR filing and compliance</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>Tax Compliance Calendar</h3>
-                            </div>
-                            <p>Never miss a filing deadline</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>Tax Compliance Calendar</h3>
+                                </div>
+                                <p>Never miss a filing deadline</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <div class="orbitax-feature-header">
-                                <h3>Regulatory Updates</h3>
-                            </div>
-                            <p>Stay informed on global tax changes</p>
+                            <a href="#" class="orbitax-card-link">
+                                <div class="orbitax-feature-header">
+                                    <h3>Regulatory Updates</h3>
+                                </div>
+                                <p>Stay informed on global tax changes</p>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -575,39 +554,36 @@
                 <div class="orbitax-tab-content" id="orbitax-productivity" data-tab-content="orbitax-productivity">
                     <div class="orbitax-features-grid">
                         <div class="orbitax-feature-card">
-                            <h3>Workflow Management</h3>
-                            <p>Organize and track your tax projects</p>
+                            <a href="#" class="orbitax-card-link">
+                                <h3>Workflow Management</h3>
+                                <p>Organize and track your tax projects</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <h3>Team Collaboration</h3>
-                            <p>Work together seamlessly across borders</p>
+                            <a href="#" class="orbitax-card-link">
+                                <h3>Team Collaboration</h3>
+                                <p>Work together seamlessly across borders</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <h3>Document Management</h3>
-                            <p>Centralize your tax documents securely</p>
+                            <a href="#" class="orbitax-card-link">
+                                <h3>Document Management</h3>
+                                <p>Centralize your tax documents securely</p>
+                            </a>
                         </div>
 
                         <div class="orbitax-feature-card">
-                            <h3>Custom Dashboards</h3>
-                            <p>Visualize your data the way you need</p>
+                            <a href="#" class="orbitax-card-link">
+                                <h3>Custom Dashboards</h3>
+                                <p>Visualize your data the way you need</p>
+                            </a>
                         </div>
                     </div>
                 </div>
             </main>
 
-            <!-- Right Sidebar -->
-            <aside class="orbitax-right-sidebar">
-                <div class="orbitax-news-card">
-                    <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=400&h=200&fit=crop"
-                        alt="City skyline">
-                    <div class="orbitax-news-content">
-                        <h3>OECD Inclusive Framework Reaches Consensus o...</h3>
-                        <a href="#" class="orbitax-read-more">Read More →</a>
-                    </div>
-                </div>
-            </aside>
         </div>
     </div>
 
